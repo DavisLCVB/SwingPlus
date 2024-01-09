@@ -1,13 +1,9 @@
 # SwingPlus
 
----
-
 SwingPlus is a library of custom ``Swing`` components. It is a work in progress, and more
 components will be added over time.
 
 ## Components
-
----
 
 ### SPRoundPanel
 
@@ -22,14 +18,10 @@ all the methods and properties of `SPRoundPanel` and `JPanel`.
 
 ## Usage
 
----
-
 The library can be used in any Java project. To use it, download the latest release and add
 the jar file to your project's classpath. Then, import the classes you want to use in your
 code.
 
 ## Credits
-
----
 
 The library was created by [Davis Cartagena](https://github.com/DavisLCVB).

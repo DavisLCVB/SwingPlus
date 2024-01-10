@@ -30,7 +30,7 @@ public class SPRoundPanel extends JPanel implements RoundGeneration {
      * More information: {@link RoundInfo}
      * </p>
      */
-    private RoundInfo roundInfo;
+    protected RoundInfo roundInfo;
 
     /**
      * Creates a new <code>SPRoundPanel</code> with the specified radius, layout manager and buffering strategy.

@@ -252,13 +252,13 @@ public class SPRoundPanel extends JPanel implements RoundGeneration {
      * Calculates the information about the component and the radius of the corner.
      * <p>
      * The information is stored in an <code>ArrayList</code> with the following order:
-     *     <ol>
-     *         <li>Width of the component</li>
-     *         <li>Height of the component</li>
-     *         <li>Radius X of the corner</li>
-     *         <li>Radius Y of the corner</li>
-     *     </ol>
      * </p>
+     * <ol>
+     *     <li>Width of the component</li>
+     *     <li>Height of the component</li>
+     *     <li>Radius X of the corner</li>
+     *     <li>Radius Y of the corner</li>
+     * </ol>
      *
      * @param comp the radius of the corner
      * @return the list with the information about the component and the radius of the corner

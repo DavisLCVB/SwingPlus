@@ -8,17 +8,48 @@ import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SPRoundPanel extends JPanel implements RoundGeneration, Serializable {
+/**
+ * <code>SPRoundPanel</code> is a class that creates a Panel with rounded corners
+ * <p>
+ * <strong>Note:</strong> Corners can have an independent radius
+ * </p>
+ * <p>
+ * <strong>Warning:</strong> This class extends JPanel so its warnings apply. Please see {@link JPanel}
+ * </p>
+ *
+ * @author Davis Cartagena
+ * @since 1.0
+ */
+public class SPRoundPanel extends JPanel implements RoundGeneration {
+
+    /**
+     * This field contains the corner radius information.
+     * <p>
+     * More information: {@link RoundInfo}
+     * </p>
+     */
     private RoundInfo roundInfo;
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with the specified radius, layout manager and buffering strategy.
+     *
+     * @param layout           the layout manager for this panel
+     * @param isDoubleBuffered a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
+     * @param radius           the radius of the corners
+     */
     public SPRoundPanel(LayoutManager layout, boolean isDoubleBuffered, int radius) {
         this(layout, isDoubleBuffered);
         this.roundInfo = new RoundInfo(radius);
     }
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with the specified layout manager and buffering strategy.
+     *
+     * @param layout           the layout manager for this panel
+     * @param isDoubleBuffered a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
+     */
     public SPRoundPanel(LayoutManager layout, boolean isDoubleBuffered) {
         super(isDoubleBuffered);
         setLayout(layout);
@@ -26,45 +57,90 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         configurePanel();
     }
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with the specified radius and layout.
+     *
+     * @param layout the layout manager for this panel
+     * @param radius the radius of the corners
+     */
     public SPRoundPanel(LayoutManager layout, int radius) {
         this(layout);
         this.roundInfo = new RoundInfo(radius);
     }
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with the specified layout.
+     *
+     * @param layout the layout manager for this panel
+     */
     public SPRoundPanel(LayoutManager layout) {
         setLayout(layout);
         this.roundInfo = new RoundInfo(0);
         configurePanel();
     }
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with the specified buffering strategy.
+     *
+     * @param isDoubleBuffered a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
+     */
     public SPRoundPanel(boolean isDoubleBuffered) {
         super(isDoubleBuffered);
         this.roundInfo = new RoundInfo(0);
         configurePanel();
     }
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with the specified radius.
+     *
+     * @param radius the radius of the corners
+     */
     public SPRoundPanel(int radius) {
         this.roundInfo = new RoundInfo(radius);
         configurePanel();
     }
 
+    /**
+     * Creates a new <code>SPRoundPanel</code> with no rounded corners.
+     */
     public SPRoundPanel() {
         this.roundInfo = new RoundInfo(0);
         configurePanel();
     }
 
+    /**
+     * Returns the object with the information about the radius of the corners. More information: {@link RoundInfo}
+     *
+     * @return the corner radius information
+     */
     public RoundInfo getRoundInfo() {
         return roundInfo;
     }
 
+    /**
+     * Sets the corner information by means of an object of class {@link RoundInfo}, which contains the information about the radius of the corners.
+     *
+     * @param roundInfo the corner radius information
+     */
     public void setRoundInfo(RoundInfo roundInfo) {
         this.roundInfo = roundInfo;
     }
 
+    /**
+     * Sets the opacity of the component to false as a 2D graphic will be rendered on top of it
+     *
+     * @see JPanel#setOpaque(boolean)
+     */
     private void configurePanel() {
         setOpaque(false);
     }
 
+    /**
+     * Overwrite the <code>paintComponent</code> method to paint over a custom area.
+     *
+     * @param g the <code>Graphics</code> object to protect
+     * @see JPanel#paintComponent(Graphics)
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
@@ -73,6 +149,11 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         super.paintComponent(g);
     }
 
+    /**
+     * Paint the rectangle with rounded corners.
+     *
+     * @param g2 the <code>Graphics2D</code> object to draw
+     */
     protected void paintCustom(Graphics2D g2) {
         Area area = createRoundArea();
         g2.setColor(getBackground());
@@ -80,6 +161,14 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         g2.dispose();
     }
 
+    /**
+     * Generates a rectangular-shaped Area and rounds the corners depending on the specifications of the <code>roundInfo</code> attribute
+     * <p>
+     * <strong>Note:</strong> The rounded rectangle is generated by means of the <code>RoundRectangle2D</code> class. More info: {@link RoundRectangle2D}
+     * </p>
+     *
+     * @return the rounded rectangle area
+     */
     protected Area createRoundArea() {
         Area area = new Area(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
         if (roundInfo.getRadiusTL() > 0)
@@ -93,6 +182,11 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         return area;
     }
 
+    /**
+     * Generates a rounded corner in the top left corner of the component
+     *
+     * @return the rectangle area with top left corner rounded
+     */
     @Override
     public Shape createCornerTL() {
         var list = preCalculus(roundInfo.getRadiusTL());
@@ -102,6 +196,11 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         return area;
     }
 
+    /**
+     * Generates a rounded corner in the top right corner of the component
+     *
+     * @return the rectangle area with top right corner rounded
+     */
     @Override
     public Shape createCornerTR() {
         var list = preCalculus(roundInfo.getRadiusTR());
@@ -111,6 +210,11 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         return area;
     }
 
+    /**
+     * Generates a rounded corner in the bottom left corner of the component
+     *
+     * @return the rectangle area with bottom left corner rounded
+     */
     @Override
     public Shape createCornerBL() {
         var list = preCalculus(roundInfo.getRadiusBL());
@@ -120,6 +224,11 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         return area;
     }
 
+    /**
+     * Generates a rounded corner in the bottom right corner of the component
+     *
+     * @return the rectangle area with bottom right corner rounded
+     */
     @Override
     public Shape createCornerBR() {
         var list = preCalculus(roundInfo.getRadiusBR());
@@ -129,10 +238,31 @@ public class SPRoundPanel extends JPanel implements RoundGeneration, Serializabl
         return area;
     }
 
+    /**
+     * Calculates the base area of the rounded rectangle
+     *
+     * @param list the list with the information about the component and the radius of the corners
+     * @return the base area of the rounded rectangle
+     */
     protected Area calculateBaseArea(ArrayList<Integer> list) {
         return new Area(new RoundRectangle2D.Double(0, 0, list.get(0), list.get(1), list.get(2), list.get(3)));
     }
 
+    /**
+     * Calculates the information about the component and the radius of the corner.
+     * <p>
+     * The information is stored in an <code>ArrayList</code> with the following order:
+     *     <ol>
+     *         <li>Width of the component</li>
+     *         <li>Height of the component</li>
+     *         <li>Radius X of the corner</li>
+     *         <li>Radius Y of the corner</li>
+     *     </ol>
+     * </p>
+     *
+     * @param comp the radius of the corner
+     * @return the list with the information about the component and the radius of the corner
+     */
     protected ArrayList<Integer> preCalculus(int comp) {
         ArrayList<Integer> list = new ArrayList<>();
         var width = getWidth();

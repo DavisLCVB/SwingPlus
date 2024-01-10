@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 /**
  * <code>RoundInfo</code> is a class that contains the corner radius information.
+ *
+ * @author Davis Cartagena
+ * @version 1.0
  */
 public class RoundInfo implements Serializable {
     /**

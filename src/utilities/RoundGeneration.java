@@ -4,6 +4,8 @@ import java.awt.*;
 
 /**
  * <code>RoundGeneration</code> is an interface that contains the methods to create the corners of a rounded shape.
+ * @author Davis Cartagena
+ * @version 1.0
  */
 public interface RoundGeneration {
     /**

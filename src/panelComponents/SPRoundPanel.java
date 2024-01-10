@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * <code>SPRoundPanel</code> is a class that creates a Panel with rounded corners
  * <p>
- * <strong>Note:</strong> Corners can have an independent radius
+ * <strong>Note:</strong> Corners can have an independent radius. As it is a graphic drawn on a panel, some JPanel methods such as setBorder() may not give the desired results.
  * </p>
  * <p>
  * <strong>Warning:</strong> This class extends JPanel so its warnings apply. Please see {@link JPanel}

@@ -4,7 +4,7 @@ SwingPlus is a library of custom `Swing` components. It is a work in progress, a
 components will be added over time.
 
 Notes:
-- This library was created for `Java 21`. It may not work with older versions.
+- This library was created for `Java 21`. But has a jar for `Java 8`
 
 ## Components
 

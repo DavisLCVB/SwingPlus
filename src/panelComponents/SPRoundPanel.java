@@ -40,72 +40,64 @@ public class SPRoundPanel extends JPanel implements RoundGeneration {
      * @param radius           the radius of the corners
      */
     public SPRoundPanel(LayoutManager layout, boolean isDoubleBuffered, int radius) {
-        this(layout, isDoubleBuffered);
+        super(isDoubleBuffered);
+        setLayout(layout);
         this.roundInfo = new RoundInfo(radius);
+        configurePanel();
     }
 
     /**
-     * Creates a new <code>SPRoundPanel</code> with the specified layout manager and buffering strategy.
+     * Creates a new <code>SPRoundPanel</code> with the specified layout manager and buffering strategy. The radius of the corners is 0.
      *
      * @param layout           the layout manager for this panel
      * @param isDoubleBuffered a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
      */
     public SPRoundPanel(LayoutManager layout, boolean isDoubleBuffered) {
-        super(isDoubleBuffered);
-        setLayout(layout);
-        this.roundInfo = new RoundInfo(0);
-        configurePanel();
+        this(layout, isDoubleBuffered, 0);
     }
 
     /**
-     * Creates a new <code>SPRoundPanel</code> with the specified radius and layout.
+     * Creates a new <code>SPRoundPanel</code> with the specified radius and layout. The buffering strategy is set to true.
      *
      * @param layout the layout manager for this panel
      * @param radius the radius of the corners
      */
     public SPRoundPanel(LayoutManager layout, int radius) {
-        this(layout);
-        this.roundInfo = new RoundInfo(radius);
+        this(layout, true, radius);
     }
 
     /**
-     * Creates a new <code>SPRoundPanel</code> with the specified layout.
+     * Creates a new <code>SPRoundPanel</code> with the specified layout. The buffering strategy is set to true and the radius of the corners is 0.
      *
      * @param layout the layout manager for this panel
      */
     public SPRoundPanel(LayoutManager layout) {
-        setLayout(layout);
-        this.roundInfo = new RoundInfo(0);
-        configurePanel();
+        this(layout, true, 0);
     }
 
     /**
-     * Creates a new <code>SPRoundPanel</code> with the specified buffering strategy.
+     * Creates a new <code>SPRoundPanel</code> with the specified buffering strategy. The radius of the corners is 0 and the layout is set to <code>FlowLayout</code>.
      *
      * @param isDoubleBuffered a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
      */
     public SPRoundPanel(boolean isDoubleBuffered) {
-        super(isDoubleBuffered);
-        this.roundInfo = new RoundInfo(0);
-        configurePanel();
+        this(new FlowLayout(), isDoubleBuffered, 0);
     }
 
     /**
-     * Creates a new <code>SPRoundPanel</code> with the specified radius.
+     * Creates a new <code>SPRoundPanel</code> with the specified radius. The buffering strategy is set to true and the layout is set to <code>FlowLayout</code>.
      *
      * @param radius the radius of the corners
      */
     public SPRoundPanel(int radius) {
-        this.roundInfo = new RoundInfo(radius);
-        configurePanel();
+        this(new FlowLayout(), true, radius);
     }
 
     /**
-     * Creates a new <code>SPRoundPanel</code> with no rounded corners.
+     * Creates a new <code>SPRoundPanel</code> with no rounded corners. The buffering strategy is set to true and the layout is set to <code>FlowLayout</code>.
      */
     public SPRoundPanel() {
-        this.roundInfo = new RoundInfo(0);
-        configurePanel();
+        this(new FlowLayout(), true, 0);
     }
 
     /**

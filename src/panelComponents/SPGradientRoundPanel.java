@@ -290,6 +290,7 @@ public class SPGradientRoundPanel extends SPRoundPanel {
      * @param gradientPaint the custom gradient paint
      */
     public void setGradientPaint(Paint gradientPaint) {
+        this.isPaintCustom = true;
         this.gradientPaint = gradientPaint;
     }
 

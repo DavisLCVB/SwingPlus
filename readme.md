@@ -3,6 +3,9 @@
 SwingPlus is a library of custom `Swing` components. It is a work in progress, and more
 components will be added over time.
 
+Notes:
+- This library was created for `Java 21`. It may not work with older versions.
+
 ## Components
 
 ### SPRoundPanel

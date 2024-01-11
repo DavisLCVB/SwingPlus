@@ -35,6 +35,11 @@ public class SPGradientRoundPanel extends SPRoundPanel {
     private Paint gradientPaint;
 
     /**
+     * This field contains a boolean that indicates if the gradient paint is custom.
+     */
+    private boolean isPaintCustom = false;
+
+    /**
      * Creates a new <code>SPGradientRoundPanel</code> with the specified layout manager, buffering strategy, radius, gradient start color, gradient end color and gradient direction.
      *
      * @param layout            the layout manager for this panel
@@ -230,6 +235,7 @@ public class SPGradientRoundPanel extends SPRoundPanel {
      */
     public void setGradientStart(Color gradientStart) {
         this.gradientStart = gradientStart;
+        repaint();
     }
 
     /**
@@ -248,6 +254,7 @@ public class SPGradientRoundPanel extends SPRoundPanel {
      */
     public void setGradientEnd(Color gradientEnd) {
         this.gradientEnd = gradientEnd;
+        repaint();
     }
 
     /**
@@ -296,7 +303,10 @@ public class SPGradientRoundPanel extends SPRoundPanel {
     @Override
     protected void paintCustom(Graphics2D g2) {
         Area area = createRoundArea();
-        g2.setPaint(this.gradientPaint);
+        if (!isPaintCustom) {
+            gradientPaint = createGradientPaint(getWidth(), getHeight());
+        }
+        g2.setPaint(gradientPaint);
         g2.fill(area);
         g2.dispose();
     }

@@ -16,6 +16,11 @@ components. The class extends from `JPanel`, so it has all the same methods and 
 used as a container for other components. The class extends from `SPRoundPanel`, so it has 
 all the methods and properties of `SPRoundPanel` and `JPanel`.
 
+`SPRoundMediaPanel` is a panel with rounded corners and a media content. It can be used as a
+container for other components. The class extends from `SPRoundPanel`, so it has all the
+methods and properties of `SPRoundPanel` and `JPanel`. Multimedia content can only be images 
+and gifs.
+
 ## Usage
 
 The library can be used in any Java project. To use it, download the latest release and add

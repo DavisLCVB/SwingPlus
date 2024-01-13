@@ -38,10 +38,10 @@ public class RoundInfo implements Serializable {
      * @param radiusBR the corner radius of the bottom right corner
      */
     public RoundInfo(int radiusTL, int radiusTR, int radiusBL, int radiusBR) {
-        this.radiusTL = radiusTL;
-        this.radiusTR = radiusTR;
-        this.radiusBL = radiusBL;
-        this.radiusBR = radiusBR;
+        this.radiusTL = Math.max(radiusTL, 0);
+        this.radiusTR = Math.max(radiusTR, 0);
+        this.radiusBL = Math.max(radiusBL, 0);
+        this.radiusBR = Math.max(radiusBR, 0);
     }
 
     /**
@@ -50,10 +50,10 @@ public class RoundInfo implements Serializable {
      * @param radius the corner radius of all corners
      */
     public RoundInfo(int radius) {
-        this.radiusTL = radius;
-        this.radiusTR = radius;
-        this.radiusBL = radius;
-        this.radiusBR = radius;
+        this.radiusTL = Math.max(radius, 0);
+        this.radiusTR = Math.max(radius, 0);
+        this.radiusBL = Math.max(radius, 0);
+        this.radiusBR = Math.max(radius, 0);
     }
 
     /**
